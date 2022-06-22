@@ -1,11 +1,5 @@
-from ctypes.wintypes import POINT
-from lib2to3.pygram import python_grammar_no_print_statement
 import os
-
-
-global clear_console
-def clear_console():
-    os.system('cls')
+clear = lambda: os.system('cls')
 
 print ("write your name")
 global name
@@ -13,13 +7,18 @@ name = input()
 print ("hello " + name)
 
 def class_function():
-    print ("choose your class (mage,warrior)")
+    print ("""choose your class (mage,warrior,clerck)
+    Loading… ████████████████████████ 00%
+    mage class - rare and isolated from others class. have some special abilities which you can choose
+    warrior class - the most powerful class. have an option to choose one of special social statuses
+    clerck class - the most common class. have no special abilities or status and hard to play
+    Loading… ████████████████████████ 00%""")
     global class_
     class_ = input()
-    if class_ == "warrior" or class_ == "mage":
+    if class_ == "warrior" or class_ == "mage" or class_ == "clerck":
              print ("you have chosen " + class_ + " class")
     else:
-        clear_console()
+        clear()
         print ("choose again")
         class_function()
 
@@ -32,7 +31,7 @@ def race_function():
     if race_ == "human" or race_ == "not human":
         print ("you have chosen "+ race_ + " race")
     else:
-        clear_console()
+        clear()
         print ("choose again")
         race_function()
 
@@ -44,90 +43,93 @@ all_points = 20
 def charisma_function():
     print ("you have 20 points. set you charisma level from 0 to 20")
     global charisma_int
-    charisma_int = input() 
-    if isinstance(charisma_int,int):
-        global charisma_
-        charisma_ = str(charisma_int)
-        if charisma_int >-1 and charisma_int <21:
+    charisma_int = input()
+    if charisma_int.isdigit():
+        if int(charisma_int) >-1 and int(charisma_int) <21:
          global points_int
-         points_int = all_points - charisma_int
+         points_int = all_points - int(charisma_int)
          global points 
          points = str(points_int)
         else:
-         clear_console()
+         clear()
          print ("incorrect amount of points. set again")
          charisma_function()
     else:
-        clear_console()
-        print ("you have " + charisma_ + " points in charisma")
+        clear()
+        print ("stop doing cringe. this isn't number you dumb. write again")
         charisma_function()
+
+clear()
+charisma_function()
+print ("you have " + str(charisma_int) + " points in charisma")
 
 def strength_function():
     print ("you have " + points + " points. set you strength level from 0 to 20")
     global strength_int
     strength_int = input()
-    if isinstance(strength_int,int):
+    if strength_int.isdigit():
         global strength_ 
         strength_ = str(strength_int)
-        if strength_int >-1 and strength_int<=points_int:
+        if int(strength_int) >-1 and int(strength_int)<=points_int:
          global points1_int
-         points1_int = points_int - strength_int
+         points1_int = points_int - int(strength_int)
          global points1
          points1 = str(points_int)
         else:
           print ("incorrect amount of points. set again")
-          clear_console()
+          clear()
           strength_function()
     else:
-        clear_console()
+        clear()
         print ("stop doing cringe. this isn't number you dumb. write again")
         strength_function()
 
-clear_console()
-print ("you have " + strength_int + " points in strength")
+clear()
 strength_function()
+print ("you have " + strength_int + " points in strength")
 
 def agility_function():
     print ("you have " + points1 + " points. set you agility level from 0 to 20")
     global agility_int
     agility_int = input()
-    if isinstance(agility_int,int):
-        if agility_int >-1 and agility_int <=points1_int:
+    if agility_int.isdigit():
+        if int(agility_int) >-1 and int(agility_int) <=points1_int:
          global points2_int
-         points2_int = points1 - agility_int
+         points2_int = int(points1) - int(agility_int)
          global points2
          points2 = str(points2_int)
         else:
-         clear_console()
+         clear()
          print ("incorrect amount of points. set again")
          agility_function()
     else:
-        clear_console()
+        clear()
         print ("stop doing cringe. this isn't number you dumb. write again")
         agility_function()
 
-clear_console()
-print ("you have " + agility_int + " points in agility")
+clear()
 agility_function()
+print ("you have " + agility_int + " points in agility")
 
 def intelligence_function():
     print ("you have " + points2 + " points. set you intelligence level from 0 to 20")
     global intelligence_int
     intelligence_int = input()
-    if isinstance(agility_int,int):
-        if intelligence_int >-1 and intelligence_int <=points2_int:
+    if intelligence_int.isdigit():
+        if int(intelligence_int) >-1 and int(intelligence_int) <=points2_int:
          global points3
-         points3 = points2 - intelligence_int
+         points3 = int(points2) - int(intelligence_int)
         else:
             print ("incorrect amount of points. set again")
-            clear_console()
+            clear()
             intelligence_function()
     else:
-        clear_console()
+        clear()
         print ("stop doing cringe. this isn't number you dumb. write again")
         intelligence_function()
 
-clear_console()
-print ("you have " + intelligence_int + " points in intelligence")
+clear()
 intelligence_function()
+print ("you have " + intelligence_int + " points in intelligence")
 
+print ("""""")
